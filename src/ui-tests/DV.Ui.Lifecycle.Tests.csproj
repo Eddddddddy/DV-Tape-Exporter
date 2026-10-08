@@ -1,0 +1,25 @@
+<Project>
+  <!-- Set these before SDK.props so build artifacts stay inside the repository. -->
+  <PropertyGroup>
+    <LifecycleWorkRoot Condition="'$(LifecycleWorkRoot)' == ''">$(MSBuildThisFileDirectory)../../.artifacts/ui-lifecycle-tests-build/</LifecycleWorkRoot>
+    <BaseOutputPath>$(LifecycleWorkRoot)bin/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(LifecycleWorkRoot)obj/</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseAppHost>false</UseAppHost>
+    <AssemblyName>DV.Ui.Lifecycle.Tests</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../app/OperationState.cs" Link="OperationState.cs" />
+    <Compile Include="../app/CaptureShutdown.cs" Link="CaptureShutdown.cs" />
+    <Compile Include="../app/Media.cs" Link="Media.cs" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

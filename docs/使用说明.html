@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DV 磁带导出 0.2 · 使用说明</title>
+<style>
+body{font:17px/1.8 system-ui,'Microsoft YaHei',sans-serif;max-width:850px;margin:42px auto;padding:0 24px;color:#263237;background:#fafbf9}h1{font-size:32px;line-height:1.35}h2{font-size:23px;margin-top:34px}.box{padding:18px 22px;background:#eaf0e8;border-radius:10px}.muted{color:#627169}code{background:#e9eeeb;padding:2px 5px;overflow-wrap:anywhere}a{color:#17634c}li{margin:8px 0}table{width:100%;border-collapse:collapse;font-size:16px}td,th{border-bottom:1px solid #dce4de;text-align:left;padding:10px 12px;vertical-align:top}td:first-child{width:30%}details{margin-top:20px;padding:14px 18px;border:1px solid #dce4de;border-radius:10px}summary{cursor:pointer;font-weight:600}@media(max-width:600px){body{margin:24px auto;padding:0 18px}h1{font-size:27px}table{font-size:15px}td,th{padding:8px 6px}}
+</style>
+</head>
+<body>
+<h1>把磁带中的录像保存到电脑</h1>
+<p class="muted">DV 磁带导出 · Windows 64 位 0.2.0 · Panasonic NV-GS28 USB MotionDV</p>
+<div class="box">完整解压 <b>DV-Tape-Exporter-Windows-x64-0.2.zip</b>，双击 <b>DV-Tape-Exporter.exe</b>。软件自动检查摄像机连接，先保存原始录像，再生成方便播放的 MP4。不需要安装 Python 或开发工具。</div>
+<h2>从开始到保存</h2>
+<ol>
+<li>摄像机接外接电源，切到<b>磁带回放</b>，菜单中 USB 功能选<b>MotionDV</b>，再连接 USB。PC / 记忆卡模式不能导出磁带。</li>
+<li>等主界面显示<b>已连接</b>。一台可用摄像机会自动选中；发现多台时，使用<b>更多 → 选择摄像机</b>。</li>
+<li>填写<b>磁带名称</b>，确认<b>保存位置</b>；点击<b>更改…</b>可换文件夹。建议使用 NTFS 或 exFAT，每小时预留至少 18 GB。</li>
+<li>需要从头保存时，使用<b>更多 → 倒带到开头</b>。等摄像机确实停止倒带后，点击<b>开始采集</b>。自动播放不支持时，在摄像机上按播放。</li>
+<li>采集时可查看时长和容量。要结束时点击<b>停止并保存</b>，等待软件写完已收到的录像。</li>
+</ol>
+<p>软件每五秒自动检查连接，采集和转换期间暂停检查，开始前会再次确认设备。保存位置和保存选项会记住，下次打开继续使用。完成后点击<b>打开已保存的录像</b>可找到保存文件夹。</p>
+<p>一小时录像约需一小时采集。预计时长只用于检查保存空间，软件不会按这个估计时间提前停止；采集保护上限为三小时。</p>
+<h2>停止后生成 MP4</h2>
+<p>默认停止后自动生成 MP4。转换期间主按钮变为<b>取消转换</b>；点击后停止转换，原始 DV 仍然保留；未完成的 MP4 不能作为最终结果。也可在<b>更多 → 保存选项…</b>中关闭自动转换。</p>
+<p>第一次转换前，使用<b>更多 → 下载播放文件组件</b>。组件来自 <a href="https://ffmpeg.org/download.html">FFmpeg 官方下载页</a>列出的 gyan.dev 构建站，核对 SHA-256 后解压。采集原始录像不需要联网；缺少组件时先保存 DV，之后使用<b>更多 → 把已有录像转换为 MP4…</b>。</p>
+<p>手动准备组件时，把 Windows FFmpeg 7 或更新版本的完整目录放到软件的 <code>tools</code> 文件夹，保留许可证，并确保 <code>ffmpeg.exe</code> 与 <code>ffprobe.exe</code> 在同一子文件夹。0.2 保留 0.1.1 的 FFmpeg 9 兼容修复。</p>
+<p>关闭采集中的窗口会先停止并写完已收到的数据，然后关闭，不会开始新的 MP4 转换。若采集组件异常，超过 30 秒仍无法退出，软件保留部分原始文件并提示检查，这次采集不能认作完整成功。</p>
+<h2>“更多”里有哪些操作</h2>
+<table>
+<thead><tr><th>操作</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>选择摄像机</td><td>发现多台设备时显示，选择要采集的一台。</td></tr>
+<tr><td>倒带到开头</td><td>发送倒带指令。需等摄像机停止后再开始；不支持电脑控制时用摄像机按钮。</td></tr>
+<tr><td>把已有录像转换为 MP4…</td><td>用已保存的 DV 生成播放文件，不必重新采集。已有同名文件不会覆盖。</td></tr>
+<tr><td>下载播放文件组件</td><td>准备生成 MP4 所需的组件。</td></tr>
+<tr><td>保存选项…</td><td>自动生成 MP4、预计磁带时长、去掉末尾停止占位。自动 MP4 默认开启，末尾占位处理默认关闭。</td></tr>
+<tr><td>查看运行记录…<br>打开保存文件夹</td><td>查看操作详情，或打开保存结果。</td></tr>
+<tr><td>记录卷尾确认</td><td>亲自核实摄像机和磁带位置后，保存独立的人工确认。</td></tr>
+<tr><td>连接帮助</td><td>打开本说明。</td></tr>
+</tbody>
+</table>
+<h2>保存的文件</h2>
+<ul>
+<li><b>原始 DV</b>：应保留的原件。包含摄像机送来的声音、元数据、摄像机标错的数据和不足一帧的尾部。</li>
+<li><b>MP4</b>：方便播放的 H.264/AAC 副本，PAL 50p / NTSC 59.94p。保留两组立体声位置；没有第二组时对应区间为静音。无法解释的声音格式也在播放副本中用静音并记录，原始声音字节保留在 DV 中。</li>
+<li><b>保存记录</b>：采集结果、原始 SHA-256、格式检查、转换日志和播放文件整段检查结果。</li>
+</ul>
+<p>默认保留全部完整 DV 帧。启用末尾占位处理后，只有结构完整、视频字节全 FF、没有声音源信息、声音字节始终相同，且持续至少五秒的末尾占位会被排除。普通静止画面和真实声音场景不会因此删除；原始 DV 始终不裁剪。</p>
+<p><b>文件检查通过不等于源带没有花屏，也不等于物理卷尾已经确认。</b> 普通停止、断线、保护上限和手动停止都不代表物理 END。默认系统连接的 USB 丢包计数为“未知”，不会写成零。人工确认不会改写后端停止原因。</p>
+<h2>从 0.1.1 升级</h2>
+<p>先关闭旧程序，将 0.2 小升级包的文件和文件夹复制到原软件目录并覆盖。主要更新 <code>DV-Tape-Exporter.exe</code>、<code>DV-Tape-Exporter.dll</code> 和 <code>DV-Tape-Exporter.deps.json</code>，同时更新说明和源码。原运行时、采集后端和播放组件继续使用，不用重新下载组件或重新采集。</p>
+<p>若完整包解压到了新目录，可将旧目录的 <code>tools</code> 一并复制。已下载到当前 Windows 用户缓存的组件仍会自动识别。重新转换已有 DV 时，若之前失败留下同名 MP4，请选新名称。</p>
+<h2>没有检测到摄像机</h2>
+<p>检查磁带回放 / MotionDV 模式、电源、USB 线，关闭其他占用摄像机的软件，再重新连接。默认使用 Windows 系统摄像机连接，软件不会自动安装或替换驱动。</p>
+<details>
+<summary>高级兼容说明：默认系统连接仍不可用时</summary>
+<p>Windows 原生 UVC 驱动可以支持 DV，但具体 DirectShow 枚举和 Sample Grabber 组件需要按实际电脑检查。没有枚举到摄像机不能单独证明必须更换驱动。</p>
+<p>软件包中的 libusb 后端仅作高级兼容备用，不在日常主流程中自动启用。此方式需要摄像机实际视频功能使用 WinUSB。先在设备管理器按连接查看设备，确认该功能的硬件 ID。NV-GS28 MotionDV 目标为 <code>VID_04DA&amp;PID_231A</code>；记忆卡 / 存储模式的 <code>PID_2316</code>不是目标。</p>
+<p>控制和流接口可能由 Windows 合并为一个视频功能，不能预先写死 <code>MI_01</code>。仅在确认实际 <code>VID_04DA&amp;PID_231A&amp;MI_XX</code>属于视频功能后，才考虑使用 <a href="https://zadig.akeo.ie/">Zadig 官方工具</a>配置该功能的 WinUSB；先记录原驱动名称和提供商。不能选择 USB Composite 父设备、记忆卡 / 存储接口或其他设备。软件不会自动执行驱动配置。</p>
+<p>如果曾在旧版为视频功能配置 WinUSB，需恢复系统摄像机驱动后再尝试默认连接。恢复时，在设备管理器选择同一视频功能，更新驱动 → 浏览我的电脑 → 让我从可用驱动列表选取原系统摄像机驱动。具体选项以这台电脑实际显示为准。重新连接后再使用默认系统连接。</p>
+<p>高级后端只有连续读到两次明确物理 END 状态才报告后端卷尾确认。默认系统连接或普通停止不能提供这个证明。技术接口和构建方式见源码目录中的 <code>src/BUILD.md</code>。</p>
+</details>
+<h2>验证范围与许可</h2>
+<p>0.2 完成 Windows x64 构建和离线回归，<b>尚未进行新版 Windows 界面和摄像机连接的实机复测</b>。首次用新版可先采集约 30 秒，核对画面、声音、停止和保存记录，再采整卷。</p>
+<p>离线回归和 FFmpeg 9.0.2 短 DV 检查覆盖原始数据保存、中文及空格路径、双音轨、取消、拒绝覆盖和播放文件解码。这些检查不能代替摄像机实测或物理卷尾确认。</p>
+<p>详细许可、源码和构建方法见软件包 <code>README.md</code>、<code>licenses</code> 和 <code>src</code>。软件包不包含私人磁带录像，尚未代码签名。</p>
+</body>
+</html>

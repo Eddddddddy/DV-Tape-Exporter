@@ -1,0 +1,62 @@
+{
+  "status": "offline_build_and_tests_passed",
+  "windows_execution": "not_tested",
+  "usb_device_operations_performed": false,
+  "target": "Windows x64, LLVM-MinGW UCRT, static winpthreads, libusb 1.0.30 DLL",
+  "upstream": "https://github.com/boris-timofeenko/uvcdv-capture",
+  "license": "GPL-3.0-or-later",
+  "source_archive_unchanged_sha256": "78b07257ec20b8c2db3b4b8294282b35d07ac5dbb85e7e4917c005d6c3784870",
+  "checks": {
+    "windows_warnings_as_errors_build": true,
+    "windows_cmake_build": true,
+    "macos_cmake_callback_and_control": true,
+    "macos_cmake_platform_tests": true,
+    "macos_callback_asan_ubsan": true,
+    "macos_platform_asan_ubsan": true,
+    "windows_platform_strict_compile": true,
+    "binary_imports_checked": true,
+    "unicode_and_exclusive_create": true,
+    "synthetic_size_over_four_gib": true,
+    "bounded_parent_pipe_and_eof": true,
+    "callback_owner_slot_cleared_before_free": true,
+    "accepted_payload_drained_after_disconnect": true,
+    "ordinary_stop_not_physical_end": true
+  },
+  "artifacts": [
+    {
+      "path": "bin/native/uvcdv-capture.exe",
+      "bytes": 111104,
+      "sha256": "104bcbc7282f5c3b1fd24b0dcafa48712d20b0b2868f6bce6f68dc0682f2a5c7",
+      "imports": [
+        "libusb-1.0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "api-ms-win-crt-filesystem-l1-1-0.dll",
+        "api-ms-win-crt-locale-l1-1-0.dll",
+        "api-ms-win-crt-time-l1-1-0.dll",
+        "api-ms-win-crt-convert-l1-1-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-private-l1-1-0.dll",
+        "KERNEL32.dll",
+        "api-ms-win-crt-environment-l1-1-0.dll"
+      ]
+    },
+    {
+      "path": "bin/native/libusb-1.0.dll",
+      "bytes": 243444,
+      "sha256": "5bd409849825009b6fe25861a6147f76d256aab248f07049d78387e3bff12d94",
+      "imports": [
+        "KERNEL32.dll",
+        "msvcrt.dll",
+        "USER32.dll"
+      ]
+    }
+  ],
+  "scope": "Offline helper/state/callback tests and compilation only; no Windows process or tape-capture hardware acceptance.",
+  "release_processing": {
+    "debug_sections_removed": true,
+    "retained_code_and_data_checked_unchanged": true
+  }
+}
